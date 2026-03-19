@@ -5,7 +5,7 @@
     "anchor:build": "anchor build",
     "anchor:test": "anchor test",
     "app:dev": "yarn --cwd app dev",
-    "app:build": "yarn --cwd app build"
+    "app:build": "yarn --cwd app install --frozen-lockfile && yarn --cwd app build"
   },
   "devDependencies": {
     "@coral-xyz/anchor": "^0.32.1",
