@@ -92,6 +92,17 @@ export default function OverviewModal() {
     return () => window.removeEventListener(OPEN_OVERVIEW_EVENT, handleOpen);
   }, []);
 
+  useEffect(() => {
+    if (!visible) return;
+
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [visible]);
+
   function dismiss() {
     sessionStorage.setItem(STORAGE_KEY, "1");
     setActiveTab(null);
@@ -120,7 +131,7 @@ export default function OverviewModal() {
         {/* subtle inner glow */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(242,194,48,0.07),transparent_55%)]" />
 
-        <div className="max-h-[88vh] overflow-y-auto px-5 pb-6 pt-6 sm:max-h-none sm:px-7 sm:pt-7">
+        <div className="max-h-[88dvh] overflow-y-auto overscroll-contain px-5 pb-6 pt-6 sm:max-h-[86dvh] sm:px-7 sm:pt-7">
           {/* Header */}
           <div className="flex items-center gap-3">
             <div className="rounded-2xl border border-[#f2c230]/45 bg-[#f2c230]/10 p-2.5 text-[#f2c230]">
